@@ -1,0 +1,128 @@
+@use 'sass:math';
+
+@mixin CenterAlign{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+@mixin LeftAlign{
+    text-align: left;
+    justify-content: left;
+    align-items: flex-start;
+    display: flex;
+}
+
+@mixin TextTitle{
+    font-family: $font-header;
+    font-style: italic;
+    font-weight: 400;
+    font-size: nth($list: $fontsize-headers, $n: 1);
+    line-height: 43.74px;
+    margin: 0;
+}
+
+@mixin TextSubtitle{
+    font-family: $font-default;
+    font-weight: 700;
+    font-size: nth($list: $fontsize-headers, $n: 2);
+    line-height: 28.13px;
+}
+
+@mixin TextHeader{
+    font-family: $font-default;
+    font-weight: 700;
+    font-size: nth($list: $fontsize-headers, $n: 3);
+    line-height: 21.09px;
+}
+
+@mixin TextEmphasised{
+    font-family: $font-default;
+    font-weight: bold;
+    font-size: nth($list: $fontsize-headers, $n: 4);
+    @include CenterAlign;
+    line-height: 18.75px;
+    margin: 0;
+}
+
+@mixin TextParagraph{
+    font-family: $font-default;
+    font-weight: 300;
+    font-size: $fontsize-paragraph;
+    line-height: 21.09px;
+    margin: 0;
+    color: $color-gray;
+}
+
+@mixin BoxShadowFade($opacity: 15%, $length: 4px, $blur: 10px){
+    box-shadow: 0px $length $blur lighten($color-shadow-base, 100% - $opacity);
+}
+
+@mixin BorderRounded($border-size: 20px){
+    border-radius: $border-size;
+    border-width: 0;
+}
+
+@mixin ButtonRounded{
+    @include BorderRounded;
+    @include TextEmphasised;
+}
+
+@mixin ButtonGradientRounded{
+    @include BorderRounded(25px);
+    @include PrimaryGradient;
+    @include TextEmphasised;
+    font-weight: 500;
+}
+
+@mixin PrimaryGradient{
+    background: linear-gradient($color-pink, $color-primary);
+    color: white;
+}
+
+@mixin PrimaryGradientText{
+    background: linear-gradient($color-pink, $color-primary);
+    background-clip: text;
+    color: transparent;
+}
+
+@mixin BlockSize{
+    padding: 30px 5px;
+    margin: 0;
+    height: fit-content;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    @media only screen and (min-width: 992px) { padding: 50px 180px;}
+    @media only screen and (min-width: 1650px) { padding: 50px 360px;}
+    @media only screen and (min-width: 2440px) { padding: 50px 720px;}
+}
+
+@mixin BlockSizeMenu{
+    padding: 30px 5px;
+    width: auto;
+    @media only screen and (min-width: 992px) { padding: 50px 150px; margin: -40px 100px -20px 200px;}
+    @media only screen and (min-width: 1441px) { padding: 50px 250px; margin: -40px 200px -20px 300px;}
+    @media only screen and (min-width: 2200px) { margin: -80px 600px -40px 700px;}
+}
+
+@mixin SSColumnToRow($reverse: false, $small-alignment: flex-start, $large-alignment: flex-start){
+    display: flex;
+    flex-direction: column;
+    align-items: $small-alignment;
+    @if($reverse == true)
+        {
+            @media only screen and (min-width: 992px) { 
+                flex-direction: row-reverse;
+                align-items: $large-alignment;
+            }
+        }
+    @else
+        {
+            @media only screen and (min-width: 992px) { 
+                flex-direction: row;
+                align-items: $large-alignment;
+            }
+        }
+}

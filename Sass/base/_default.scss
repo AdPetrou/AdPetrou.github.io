@@ -1,0 +1,41 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 383px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    transition-property: box-shadow scale;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    @include BoxShadowFade;
+    &:hover{
+        @include BoxShadowFade(35%);
+        scale: 1.03;
+    }
+}
+
+button {
+    transition-property: filter box-shadow;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    @include BoxShadowFade;
+    &:hover{
+        filter: brightness(1.2);
+        @include BoxShadowFade(50%);
+    }
+}

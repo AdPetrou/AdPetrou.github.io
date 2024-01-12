@@ -1,0 +1,44 @@
+.__modifier-primary-colour{
+    color: $color-primary;
+}
+
+.__modifier-darken-background{
+    color: darken($color: $color-background, $amount: 40%);
+}
+
+.__modifier-button-gradient-round{
+    @include ButtonGradientRounded;
+    height: 50px;
+    width: 200px;
+    margin: 20px;
+}
+
+.__modifier-button-round{
+    @include ButtonRounded;
+    height: 75px;
+    width: 100%;
+    margin: 0;
+}
+
+.__modifier-sub-text{
+    font-size: 15px;
+    line-height: 19.92px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.__modifier-title-fade{
+    @include BoxShadowFade(15%, 2px, 4px);
+}
+
+.__modifier-gap{
+    gap: 40px;
+}
+
+.__modifier-boxshadow-none{
+    box-shadow: none;
+    &:hover{
+        box-shadow: none;
+    }
+}

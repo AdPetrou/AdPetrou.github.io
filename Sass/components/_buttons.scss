@@ -1,0 +1,82 @@
+.__element-like-button{
+    border: 0;
+    background-color: transparent;
+    box-shadow: none;
+    
+    & i {
+        position: absolute;
+        font-size: 22px;       
+        transition: opacity 0.2s linear;
+    }
+
+    & .fa-regular{          
+        background-clip: text;
+        color: black;
+        opacity: 1;
+    }
+
+    & .fa-solid{ 
+        position: relative;
+        @include PrimaryGradientText;
+        opacity: 0;
+    }
+
+    &:hover{
+        box-shadow: none;
+        & .fa-solid {           
+            opacity: 1;
+        }
+
+        & .fa-regular{          
+            background-clip: text;
+            opacity: 0;
+        }
+    }
+}
+
+.__element-explore-button{
+    justify-self: center;
+    @include BoxShadowFade(25%);
+    margin: 20px 0px;
+}
+
+.__element-back-button{
+    background-color: transparent;
+    box-shadow: none;
+    & i {
+        font-size: 17px;
+        transition: scale 0.2s linear;
+    }
+    &:hover{
+        background-color: transparent;
+        box-shadow: none;
+        & i {
+            scale: 1.2;
+        }
+    }
+}
+
+.__element-add-button{
+    background-color: $color-green;
+    height: 100%;
+    width: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0px 15px 15px 0px;
+    transition-property: width;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+    box-shadow: none;
+
+    &:hover{
+        filter: none;
+        box-shadow: none;
+    }
+
+    & i{
+        transition: scale 0.1s linear;
+        color: white;
+        scale: 0;
+        font-size: 20px;
+    }
+}

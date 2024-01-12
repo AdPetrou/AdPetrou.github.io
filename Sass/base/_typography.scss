@@ -1,0 +1,32 @@
+
+h1{
+    @include TextTitle;
+}
+
+h2{
+    @include TextSubtitle;
+}
+
+h3{
+    @include TextHeader;
+}
+
+h4{
+    @include TextEmphasised;
+}
+
+h5{
+    @include TextParagraph;    
+    font-size: 14px;
+    line-height: 18.75px;
+    text-transform: uppercase;
+
+    border: 0;
+    border-bottom: 3px solid;
+    border-image: linear-gradient(to right, $color-green 10%, transparent 10%) 100% 0;
+    padding-bottom: 3px;
+}
+
+p{
+    @include TextParagraph;
+}
