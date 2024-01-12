@@ -60,7 +60,7 @@
             & .__element-label {
                 display: flex;
                 justify-content: flex-start;
-                text-wrap: wrap;
+                overflow-wrap: normal;
                 margin-left: 20px;
 
                 & i {

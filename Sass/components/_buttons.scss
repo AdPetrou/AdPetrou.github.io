@@ -1,4 +1,4 @@
-.__element-like-button{
+.__element-like-button{ //Heart animation
     border: 0;
     background-color: transparent;
     box-shadow: none;
@@ -45,18 +45,18 @@
     box-shadow: none;
     & i {
         font-size: 17px;
-        transition: scale 0.2s linear;
+        transition: transform 0.2s linear;
     }
     &:hover{
         background-color: transparent;
         box-shadow: none;
         & i {
-            scale: 1.2;
+            transform: scale(1.2);
         }
     }
 }
 
-.__element-add-button{
+.__element-add-button{ //Dish selector animation
     background-color: $color-green;
     height: 100%;
     width: 0;
@@ -74,9 +74,9 @@
     }
 
     & i{
-        transition: scale 0.1s linear;
+        transition: transform 0.1s linear;
         color: white;
-        scale: 0;
+        transform: scale(0);
         font-size: 20px;
     }
 }
