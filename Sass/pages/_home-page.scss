@@ -1,146 +1,114 @@
 .page-home{
 
-& .block-loader{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #ffffff; /* Set the background color */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 1;
-    animation: fadeOut 0.5s forwards;
-    animation-delay: 2s;
-    z-index: 999;
-}
-
-& .block-main .__element-location {
-    color: $color-gray;
-    background-color: $color-gray-two;
-    gap: 17px;
-    height: 50px;
-}
-
-& .block-description {
-    height: fit-content;
-    @include CenterAlign;
+& .block-header {
+    padding-top: 20px;
+    background-color: $color-background-blur;
     flex-direction: column;
-    background-color: $color-background;
-    padding: 20px;
-    gap: 20px;
+    align-items: center;
+    @include BoxShadowFadeBG(10px, 5px, darken($color-background, 2%));
+    z-index: 1;
 
-    & .__element-subtitle {
-        @include CenterAlign;
+    & .block-content{
+        display: flex;
+        flex-direction: column;
         position: relative;
-    }
-}
+        margin-top: 20px;
+        @media only screen and (min-width: 992px){margin-top: 0px;}
 
-& .block-instructions {
-    @include BlockSize;
-
-    & .__element-grid {
-        padding: 10px;
-
-        @media only screen and (min-width: 1200px) {
-            grid-template-columns: auto auto auto;
-            grid-auto-columns: 322px;
+        & .__element-img-wrapper {
+            position: relative;
+            width: 100vw;
+            height: 75px; /* Adjust this height as needed */
+            @media only screen and (min-width: 768px) {
+                height: 100px;
+            }
+            @media only screen and (min-width: 992px) 
+            {  
+                height: 150px;
+            }
+            overflow: hidden;
+        }
+        
+        & .__element.img-inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        & .__element-grid-item {
-            display: flex;
-            background-color: $color-background;
-            height: 75px;
-            width: 322px;
-            &:hover{
-                .__element-label i {color: $color-primary;}
-            }
+        & .block-description {
+            height: fit-content;
+            width: 100vw;
+            @include CenterAlign;
+            flex-direction: row;
+            margin-top: 10px;
+            background-color: $color-gray;
+            z-index: 10;
 
-            & .__element-label {
-                display: flex;
-                justify-content: flex-start;
-                overflow-wrap: normal;
-                margin-left: 20px;
-
-                & i {
-                    padding: 28px;
-                    position: relative;
-                    transition: color 0.2s linear;
-                }
-
-                & .__element-text {
-                    text-align: left;
-                    position: relative;
-                }
-            }
-
-            & .__element-numberlabel {
-                z-index: 100;
-                color: white;
-                @include CenterAlign;
-                position: relative;
+            & .__element-subtitle {
+                @include CenterAlign; 
+                
+                text-transform: uppercase;
+                width: 33vw;
                 font-size: 14px;
 
-                & i {
-                    z-index: -1;
-                    color: $color-primary;
-                    position: absolute;
-                    font-size: 25px;
-                }
-            }
-        }
-    }
-}
-
-& .block-restaurants {
-    @include BlockSize;
-    background-color: $color-background;
-
-    & .__element-grid {
-        @media only screen and (min-width: 992px) {
-            grid-template-columns: auto auto;
-            grid-auto-columns: 490px;
-            column-gap: 10%;
-        }
-
-        & .__element-grid-item {
-            flex-direction: column;
-            height: 250px;
-            max-width: 490px;
-
-            & figure {
+                padding-top: 10px;
+                padding-bottom: 10px;
                 margin: 0;
-                overflow: hidden;
-                border-radius: 20px 20px 0 0;
 
-                & img {
-                    height: 190px;
-                    padding-bottom: 5px;
+                transition: scale 0.2s ease-in-out;
+
+                @media only screen and (min-width: 768px) {font-size: 16px;}
+                @media only screen and (min-width: 1440px) {width: 15%;;}
+
+                & i{
+                    display: none;
+                    margin-right: 10px;
+                    @media only screen and (min-width: 768px) { display: flex; margin-right: 10px;}
                 }
 
-                & figcaption {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    align-items: center;
-                }
-
-                & figcaption * {
-                    margin: 0;
-                    padding: 1px 10px;
-                }
-
-                & .__element-text {
-                    display: flex;
-                    flex-direction: column;
-                }
-
-                & button{
-                    z-index: 1;         
+                &:hover{
+                    @include ActiveSection;
                 }
             }
         }
     }
+    & .block-links{
+        position: absolute;
+        top: 0;
+        right: 0px;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 100px;
+
+        border-bottom: 2px solid transparent; /* Set initial border color to transparent */
+        border-image: linear-gradient(to right, $color-background-blur, $color-gray); /* Define the gradient */
+        border-image-slice: 1; /* Slice the border image */
+        & h5{
+            border-top: 2px solid $color-background-blur;
+            padding-top: 4px;
+            color: white;
+            height: fit-content;
+            &:hover{
+                border-top: 2px solid  $color-green;
+            }
+        }
+    }
 }
+
+& .block-main{
+    background-color: $color-gray;
+    gap: 17px;
+    height: 100%;
+    width: 100vw;
+    align-self: center;
+    z-index: -1;
+    @media only screen and (min-width: 768px){ width: 75vw;}
+    @media only screen and (min-width: 1440px){ width: 55vw;}
+}
+
 }

@@ -1,14 +1,24 @@
 
 h1{
-    @include TextTitle;
+    font-family: $font-header;
+    font-weight: 400;
+    font-size: nth($list: $fontsize-headers, $n: 1);
+    line-height: 43.74px;
+    margin: 0;
 }
 
 h2{
-    @include TextSubtitle;
+    font-family: $font-default;
+    font-weight: 400;
+    font-size: nth($list: $fontsize-headers, $n: 2);
+    line-height: 28.13px;
 }
 
 h3{
-    @include TextHeader;
+    font-family: $font-default;
+    font-weight: 400;
+    font-size: nth($list: $fontsize-headers, $n: 3);
+    line-height: 21.09px;
 }
 
 h4{
@@ -17,14 +27,9 @@ h4{
 
 h5{
     @include TextParagraph;    
-    font-size: 14px;
     line-height: 18.75px;
-    text-transform: uppercase;
-
-    border: 0;
-    border-bottom: 3px solid;
-    border-image: linear-gradient(to right, $color-green 10%, transparent 10%) 100% 0;
-    padding-bottom: 3px;
+    @media only screen and (min-width: 768px) {font-size: 14px;}
+    @media only screen and (min-width: 1441px) {font-size: 18px;}
 }
 
 p{

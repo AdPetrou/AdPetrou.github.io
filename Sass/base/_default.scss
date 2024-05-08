@@ -1,6 +1,8 @@
 html {
     width: 100%;
     height: 100%;
+    background-color: $color-background;
+    color: white;
 }
 
 body {
@@ -11,9 +13,13 @@ body {
 }
 
 img {
-    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     object-fit: cover;
-    max-height: 383px;
+    width: auto;
+    height: 100%;
 }
 
 a {
@@ -22,9 +28,7 @@ a {
     transition-property: box-shadow, transform;
     transition-duration: 0.2s;
     transition-timing-function: ease-in-out;
-    @include BoxShadowFade;
     &:hover{
-        @include BoxShadowFade(35%);
         transform: scale(1.03);
     }
 }

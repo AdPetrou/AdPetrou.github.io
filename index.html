@@ -1,166 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ohmyfood</title>
+    <title>Adam Petrou - Developer and Art portfolio</title>
+    <script async src="./JS/header.js"></script>  
+    </script> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://fonts.googleapis.com/css?family=Shrikhand' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Gothic+A1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./Assets/CSS/main.css">
 </head>
 <body class="page-home">
-    <section class="block-loader">
-        <div class="__element-loader"></div>
-    </section>
     <!-- Header Block -->
-    <header class="block-header">
-        <!-- Title -->
-        <img class="__element-logo" src="./Assets/images/logo/ohmyfood.png" alt="ohmyfood logo">
-        <!-- Location -->
+    <header id="header">    
     </header>
-    <!-- Main Block -->
+
     <section class="block-main">
-        <!-- Website intro and navigation -->
-        <h4 class="__element-location"> <i class="fa-solid fa-location-dot"></i> Islington, London </h4>
-        <section class="block-description">
-            <h2 class="__element-subtitle"> Book the meal you want </h2>
-            <p class="__element-text"> Discover our carefully selected high-end restaurants </p>
-            <form action="#restaurant-section">
-                <button class="__element-explore-button __modifier-button-gradient-round"> Explore our restaurants </button>
-            </form>
-        </section>
 
-        <!-- Instruction Grid -->
-
-        <section class="block-instructions">
-            <h2 class="__element-subtitle"> How it works </h2>
-
-            <div class="__element-grid">
-                <div class="__element-grid-item">
-                    <p class="__element-numberlabel">1<i class="fa-solid fa-circle"></i></p>
-                    <div class="__element-label">                     
-                        <i class="fa-solid fa-mobile-screen-button __modifier-darken-background"></i>
-                        <h4 class="__element-text"> Choose a restaurant </h4>
-                    </div>
-                </div>
-
-                <div class="__element-grid-item">
-                    <p class="__element-numberlabel">2<i class="fa-solid fa-circle"></i></p>
-                    <div class="__element-label"> 
-                        <i class="fa-solid fa-list __modifier-darken-background"></i>
-                        <h4 class="__element-text"> Build your meal </h4>
-                    </div>
-                </div>
-
-                <div class="__element-grid-item">
-                    <p class="__element-numberlabel">3<i class="fa-solid fa-circle"></i></p>
-                    <div class="__element-label">        
-                        <i class="fa-solid fa-store __modifier-darken-background"></i>
-                        <h4 class="__element-text"> Enjoy your meal at the restaurant </h4>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Restaurant Grid -->
-
-        <section class="block-restaurants" id="restaurant-section">
-            <h2 class="__element-subtitle"> Restaurants </h2>
-            <div class="__element-grid">
-
-                <a class="__element-grid-item" href="menu-kitchenwest.html">
-                    <figure>
-                        <img src="./Assets/images/restaurants/jay-wennington-N_Y88TWmGwA-unsplash.jpg" alt="Kitchen West">
-                        <figcaption>
-                            <div class="__element-text">
-                                <h3>Kitchen West</h3>
-                                <p class="__modifier-sub-text"> Angel </p>
-                            </div>
-                            <span class="__element-like-button">
-                                <i class="fa-regular fa-heart"></i>
-                                <i class="fa-solid fa-heart"></i>
-                            </span>
-                        </figcaption>
-                    </figure>
-                </a>
-            
-                <a class="__element-grid-item" href="./menu-elderflower.html">
-                    <figure>
-                        <img src="./Assets/images/restaurants/stil-u2Lp8tXIcjw-unsplash.jpg" alt="Elderflower food">
-                        <figcaption>
-                            <div class="__element-text">
-                                <h3>Elderflower</h3>
-                                <p class="__modifier-sub-text"> Old Street </p>
-                            </div>
-                            <span class="__element-like-button">
-                                <i class="fa-regular fa-heart"></i>
-                                <i class="fa-solid fa-heart"></i>
-                            </span>
-                        </figcaption>
-                    </figure>
-                </a>
-                
-                <a class="__element-grid-item" href="./menu-shoreditchcanteen.html">
-                    <figure>
-                        <img src="./Assets/images/restaurants/toa-heftiba-DQKerTsQwi0-unsplash.jpg" alt="Shoreditch Canteen food">
-                        <figcaption>
-                            <div class="__element-text">
-                                <h3>Shoreditch Canteen</h3>
-                                <p class="__modifier-sub-text"> Shoreditch </p>
-                            </div>
-                            <span class="__element-like-button">
-                                <i class="fa-regular fa-heart"></i>
-                                <i class="fa-solid fa-heart"></i>
-                            </span>
-                        </figcaption>
-                    </figure>
-                </a>
-                
-                <a class="__element-grid-item" href="./menu-bayleaf.html">
-                    <figure>
-                        <img src="./Assets/images/restaurants/louis-hansel-shotsoflouis-qNBGVyOCY8Q-unsplash.jpg" alt="The Bayleef food">
-                        <figcaption>
-                            <div class="__element-text">
-                                <h3>The Bayleef</h3>
-                                <p class="__modifier-sub-text"> Hoxton </p>
-                            </div>
-                            <span class="__element-like-button">
-                                <i class="fa-regular fa-heart"></i>
-                                <i class="fa-solid fa-heart"></i>
-                            </span>
-                        </figcaption>
-                    </figure>
-                </a>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="block-footer">
-            <h1 class="__element-title"> ohmyfood </h1>
-            <nav class="__element-navbar">
-                <div class="__element-navitem"> <i class="fa-solid fa-utensils"></i>
-                    <a class="__modifier-boxshadow-none" href="#">
-                    <p>Suggest a restaurant</p></a>
-                </div>
-                <div class="__element-navitem"> <i class="fa-solid fa-handshake-angle"></i>                     
-                    <a class="__modifier-boxshadow-none" href="#">
-                    <p>Become a partner</p></a> 
-                </div>
-                <div class="__element-navitem"> 
-                    <a class="__modifier-boxshadow-none" href="#">
-                    <p>Legal notice</p></a>
-                </div>
-                <div class="__element-navitem"> 
-                    <a class="__modifier-boxshadow-none" href="mailto:someone@something.com?subject=Feedback&body=Message">
-                    <p>Contact</p></a>
-                </div>
-            </nav>
-        </footer>
     </section>
 </body>
