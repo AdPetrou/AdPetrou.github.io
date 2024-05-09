@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "browserify": "^17.0.0",
+    "file-system": "^1.2.9",
+    "uniq": "^1.0.1",
+    "watchify": "^4.0.0"
+  }
+}

@@ -9,7 +9,6 @@ const subtitles = [
 // Array of script source URLs
 const scriptSources = [
     "./scripts/HomeAboutContent.js",
-    "./scripts/showcase.js",
 ];
 
 function addScript(src, callback) {

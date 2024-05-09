@@ -1,6 +1,8 @@
+var fs = require("fs");
+var path = require('path')
+
 function arrayObject(index, filePath, id)
 {
-    this.index = index;
     this.filePath = filePath;
     this.id = id;
 }
@@ -37,16 +39,21 @@ async function generateTemplate(item) {
 //Example usage
 
 function generateAllTemplates() {
-        subtitles.forEach((element, index) => {
+        subtitles.forEach((element) => {
             if(element.showcase === "true"){
-                fileArray.push(new arrayObject(index, `./Assets/Projects/${element.text}/`, element.id))
+                fileArray.push(new arrayObject(`./Assets/Projects/${element.text}/`, element.id))
             }
         });
 
         fileArray.forEach((files) => {
-            
+            const jsonsInDir = fs.readdirSync(files.filePath).filter(file => path.extname(file) === '.json');
+            jsonsInDir.forEach(file => {
+            const fileData = fs.readFileSync(`${files.filePath}${file}`);
+            generateTemplate(JSON.parse(fileData.toString()));
+
             console.log(files.filePath)
-        })
-    }
+        });
+    })
+}
 
 generateAllTemplates();
