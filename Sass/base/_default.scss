@@ -43,3 +43,9 @@ button {
         @include BoxShadowFade(50%);
     }
 }
+
+figure{
+    width: 100%;
+    height: fit-content;
+    margin: 0;
+}

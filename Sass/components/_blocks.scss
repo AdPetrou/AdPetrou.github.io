@@ -2,3 +2,25 @@
     display: flex;
     width: 100%;
 }
+
+.block-loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $color-background; /* Set the background color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    animation: fadeOut 0.5s forwards;
+    animation-delay: 1.5s;
+    z-index: 999;
+}
+
+.block-content{
+    display: none;
+    margin: 50px 10%;
+    @media only screen and (min-width: 768px){margin: 50px 25%;}
+}

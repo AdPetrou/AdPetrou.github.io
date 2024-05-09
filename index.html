@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adam Petrou - Developer and Art portfolio</title>
-    <script async src="./JS/header.js"></script>  
-    </script> 
+    <script src="./scripts/header.js" async></script>
+    <script src="./scripts/selector.js" async></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://fonts.googleapis.com/css?family=Shrikhand' rel='stylesheet'>
@@ -19,11 +19,13 @@
     <link rel="stylesheet" href="./Assets/CSS/main.css">
 </head>
 <body class="page-home">
+    <section class="block-loader">
+        <div class="__element-loader"></div>
+    </section>
     <!-- Header Block -->
-    <header id="header">    
+    <header id="header">
+        <!-- HTML definied in header.js in case I need to reuse it-->    
     </header>
-
-    <section class="block-main">
-
+    <section id="content" class="block-main">
     </section>
 </body>

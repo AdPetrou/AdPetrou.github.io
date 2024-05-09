@@ -1,3 +1,8 @@
 .__modifier-active-section{
     @include ActiveSection;
 }
+
+.__modifier-center{
+    @include CenterAlign;
+    flex-direction: column;
+}

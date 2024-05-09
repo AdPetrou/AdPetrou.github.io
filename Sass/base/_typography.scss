@@ -1,10 +1,11 @@
 
 h1{
     font-family: $font-header;
-    font-weight: 400;
+    font-weight: bold;
     font-size: nth($list: $fontsize-headers, $n: 1);
     line-height: 43.74px;
     margin: 0;
+    color: $color-primary;
 }
 
 h2{
