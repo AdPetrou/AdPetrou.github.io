@@ -20,10 +20,7 @@ let appHomeContent = /*html*/`
 </p>
 
 <br>
-<Figure class="__modifier-ceneter">
-    <img class="__element-showcase" src="Assets/GIFs/FoRiften 1.gif" alt="GIFs to showcase my Level Design">
-    <figcaption> Before/After screenshots of my upcoming mod - Fallout Riften</figcaption>
-</Figure>
+/*Showcase here*/
 <br>
 <br>
 
