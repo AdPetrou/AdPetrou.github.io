@@ -77,6 +77,10 @@ figure {
   margin: 0;
 }
 
+header {
+  z-index: 5;
+}
+
 h1 {
   font-family: "Copperplat Gothic 29 AB", serif;
   font-weight: bold;
@@ -212,7 +216,6 @@ p {
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 10px 5px #1f1f1f;
-  z-index: 1;
 }
 .page-home .block-header .block-banner {
   display: flex;
@@ -314,7 +317,7 @@ p {
   border-image-slice: 1; /* Slice the border image */
 }
 .page-home .block-header .block-links h5 {
-  border-top: 2px solid #111918;
+  border-top: 2px transparent #111918;
   padding-top: 4px;
   color: white;
   height: -moz-fit-content;
@@ -331,7 +334,7 @@ p {
   height: fit-content;
   width: 100vw;
   align-self: center;
-  z-index: -1;
+  z-index: 0;
 }
 @media only screen and (min-width: 768px) {
   .page-home .block-main {

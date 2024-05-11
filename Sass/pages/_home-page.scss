@@ -6,7 +6,6 @@
     flex-direction: column;
     align-items: center;
     @include BoxShadowFadeBG(10px, 5px, darken($color-background, 2%));
-    z-index: 1;
 
     & .block-banner{
         display: flex;
@@ -89,7 +88,7 @@
         border-image: linear-gradient(to right, $color-background-blur, $color-gray); /* Define the gradient */
         border-image-slice: 1; /* Slice the border image */
         & h5{
-            border-top: 2px solid $color-background-blur;
+            border-top: 2px transparent $color-background-blur;
             padding-top: 4px;
             color: white;
             height: fit-content;
@@ -107,7 +106,7 @@
     height: fit-content;
     width: 100vw;
     align-self: center;
-    z-index: -1;
+    z-index: 0;
     @media only screen and (min-width: 768px){ width: 75vw;}
     @media only screen and (min-width: 1440px){ width: 55vw;}
 }

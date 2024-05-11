@@ -1,8 +1,28 @@
 {
   "dependencies": {
-    "browserify": "^17.0.0",
-    "file-system": "^1.2.9",
-    "uniq": "^1.0.1",
-    "watchify": "^4.0.0"
+    "express": "^4.19.2",
+    "file-system": "^1.2.2",
+    "nodemon": "^3.1.0",
+    "reload": "^3.2.1"
+  },
+  "name": "apetrou-portfolio-site",
+  "version": "1.0.0",
+  "description": "A website to showcase my work",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdPetrou/AdPetrou.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdPetrou/AdPetrou.github.io/issues"
+  },
+  "homepage": "https://github.com/AdPetrou/AdPetrou.github.io#readme",
+  "devDependencies": {
+    "@types/node": "^20.12.11"
   }
 }
