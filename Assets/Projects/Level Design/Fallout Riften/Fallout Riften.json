@@ -1,7 +1,8 @@
 {
+    "id": "fallout-riften",
     "title": "Fallout Riften",
     "paragraph": "Hello",
-    "imageURL": "./Media/FoRiften 1.gif",
+    "imageURL": "./Assets/Projects/Level Design/Fallout Riften/Media/FoRiften 1.gif",
     "caption": "Fallout Riften",
     "link": "hotmail.co.uk"
 }

@@ -1,20 +1,9 @@
 var fs = require('fs');
 var path = require('path');
 
-function arrayObject(filePath, id)
-{
-    this.filePath = filePath;
-    this.id = id;
-}
-
-const fileArray = new Array();
-const subtitlesData = fs.readFileSync('./Assets/Projects/Selector Data.json', 'utf8');
-// Parse JSON data into JavaScript array
-const subtitles = JSON.parse(subtitlesData);
-
 function generateTemplate(item) {
     return /*html*/`
-    <div id="${item.id}">
+    <article id="${item.id}">
         <h1>${item.title}</h1>
         <br>
         <p>${item.paragraph}</p>
@@ -22,13 +11,12 @@ function generateTemplate(item) {
         <figure class="__modifier-center">
             <div class="__element-image-container">
                 <button class="prev-button">&#10094;</button>
-                <img src="${item.imageUrl}">
+                <img class="__element-showcase" src="${item.imageURL}" alt="Images">
                 <button class="next-button">&#10095;</button>
             </div>
             <figcaption>${item.caption}</figcaption>
-            <a class="" href="${item.link}"> See more </a>
         </figure>
-    </div>
+    </article>
     `;
 }
 
@@ -53,47 +41,43 @@ function findJsonFiles(directory) {
     return jsonFiles;
 }
 
-function generateAllTemplates() {
-    const indexHtmlPath = path.join(__dirname, '..', 'index.html');
-    let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
+function generateAllTemplates(htmlContent, filePath, divId) {
 
-    subtitles.forEach((element) => {
-        if(element.showcase === "true") {
-            fileArray.push(new arrayObject(`./Assets/Projects/${element.text}/`, element.target));
-        }
+    const jsonsInDir = findJsonFiles(path.join(__dirname, '..', filePath));
+    jsonsInDir.forEach(file => {
+        const fileData = fs.readFileSync(file);
+        const item = JSON.parse(fileData.toString());
+        const newContent = generateTemplate(item);
+
+        // Append HTML content to the specified div
+        htmlContent = appendToDiv(htmlContent, divId, newContent);
+        //console.log(htmlContent);
+        console.log(`Generated HTML for ${item.id}`);
     });
-
-    fileArray.forEach((files) => {
-        const jsonsInDir = findJsonFiles(path.join(__dirname, '..', files.filePath));
-        jsonsInDir.forEach(file => {
-            console.log("File Bell");
-            const fileData = fs.readFileSync(file);
-            const item = JSON.parse(fileData.toString());
-            const htmlContent = generateTemplate(item);
-
-            // Append HTML content to the specified div
-            indexHtml = appendToDiv(indexHtml, `${files.id}-content`, htmlContent);
-
-            console.log(`Generated HTML for ${item.id}`);
-        });
-    });
-
-    // Write updated index.html content
-    fs.writeFileSync(indexHtmlPath, indexHtml);
+    //console.log(htmlContent);
+    return htmlContent;
 }
 
 function appendToDiv(html, divId, content) {
     // Find the index of the closing tag of the target div
-    console.log(html)
-    const closingTagIndex = html.indexOf('id="level-design-content"');
+    const closingTagIndex = html.indexOf(`<div class="block-content" id="${divId}">`);
 
     if (closingTagIndex === -1) {
         console.error(`Target div with ID ${divId} not found.`);
         return html; // Return original HTML if target div not found
     }
 
-    // Insert the content before the closing tag of the target div
-    return html.slice(0, closingTagIndex) + content + html.slice(closingTagIndex);
+    // Find the index of the closing </div> tag after the closing tag of the target div
+    const closingDivIndex = html.indexOf('</div>', closingTagIndex);
+
+    if (closingDivIndex === -1) {
+        console.error(`Closing </div> tag not found for div with ID ${divId}.`);
+        return html; // Return original HTML if closing </div> tag not found
+    }
+
+    // Insert the content between the closing tag and the closing </div> tag of the target div
+    return html.slice(0, closingDivIndex) + content + html.slice(closingDivIndex);
 }
+
 
 module.exports = { generateAllTemplates };

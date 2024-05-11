@@ -88,7 +88,7 @@
         border-image: linear-gradient(to right, $color-background-blur, $color-gray); /* Define the gradient */
         border-image-slice: 1; /* Slice the border image */
         & h5{
-            border-top: 2px transparent $color-background-blur;
+            border-top: 2px solid transparent;
             padding-top: 4px;
             color: white;
             height: fit-content;

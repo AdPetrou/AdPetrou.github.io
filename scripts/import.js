@@ -1,8 +1,8 @@
 // Array of script source URLs
 const scriptSources = [
     "./scripts/header.js",
-    "./scripts/selector.js",
-    "./scripts/HomeAboutContent.js",
+    "./scripts/function.js"
+
 ];
 
 function addScript(src, callback) {
@@ -23,7 +23,6 @@ function addScripts(index) {
     } else {
         // All scripts have been added and executed, execute the rest of the script
         console.log("All scripts loaded and executed");
-        SetSelectors();
     }
 }
 

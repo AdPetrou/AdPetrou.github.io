@@ -167,7 +167,6 @@ p {
 }
 
 .block-content {
-  display: none;
   margin: 50px 10%;
 }
 @media only screen and (min-width: 768px) {
@@ -317,7 +316,7 @@ p {
   border-image-slice: 1; /* Slice the border image */
 }
 .page-home .block-header .block-links h5 {
-  border-top: 2px transparent #111918;
+  border-top: 2px solid transparent;
   padding-top: 4px;
   color: white;
   height: -moz-fit-content;
