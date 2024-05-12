@@ -1,7 +1,0 @@
-[
-    { "icon": "fa-house", "text": "Home & About", "target": "home-about", "showcase": "false" },
-    { "icon": "fa-trowel-bricks", "text": "Level Design", "target": "level-design", "showcase": "true" },
-    { "icon": "fa-gamepad", "text": "Game Development", "target": "game-development", "showcase": "true" },
-    { "icon": "fa-globe", "text": "Front-End Suite", "target": "front-end", "showcase": "false" },
-    { "icon": "fa-globe", "text": "Other Projects", "target": "other-projects", "showcase": "true" }
-]

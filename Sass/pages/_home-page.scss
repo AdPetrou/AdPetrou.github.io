@@ -103,7 +103,9 @@
     background-color: $color-gray;
     gap: 17px;
     min-height: 100%;
+    max-height: none;
     height: fit-content;
+    overflow: scroll;
     width: 100vw;
     align-self: center;
     z-index: 0;

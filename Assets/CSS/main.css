@@ -167,6 +167,8 @@ p {
 }
 
 .block-content {
+  height: -moz-fit-content;
+  height: fit-content;
   margin: 50px 10%;
 }
 @media only screen and (min-width: 768px) {
@@ -207,6 +209,16 @@ p {
   -o-border-image: linear-gradient(to bottom, #ceb99c, #4a3321);
      border-image: linear-gradient(to bottom, #ceb99c, #4a3321);
   border-image-slice: 1;
+}
+
+.__element-spotlight {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top: 3px solid #242424;
+  border-bottom: 3px solid #242424;
+}
+.__element-spotlight h1:before {
+  content: "Spotlight - ";
 }
 
 .page-home .block-header {
@@ -329,8 +341,10 @@ p {
   background-color: #353535;
   gap: 17px;
   min-height: 100%;
+  max-height: none;
   height: -moz-fit-content;
   height: fit-content;
+  overflow: scroll;
   width: 100vw;
   align-self: center;
   z-index: 0;

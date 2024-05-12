@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 
-function generateTemplate(item) {
+function GenerateTemplate(item) {
     return /*html*/`
     <article id="${item.id}">
         <h1>${item.title}</h1>
@@ -10,9 +10,9 @@ function generateTemplate(item) {
         <br>
         <figure class="__modifier-center">
             <div class="__element-image-container">
-                <button class="prev-button">&#10094;</button>
+                <button class="__element-prev-button">&#10094;</button>
                 <img class="__element-showcase" src="${item.imageURL}" alt="Images">
-                <button class="next-button">&#10095;</button>
+                <button class="__element-next-button">&#10095;</button>
             </div>
             <figcaption>${item.caption}</figcaption>
         </figure>
@@ -20,8 +20,8 @@ function generateTemplate(item) {
     `;
 }
 
-function findJsonFiles(directory) {
-    let jsonFiles = [];
+function FindFiles(directory, type) {
+    let fileReturn = [];
     const files = fs.readdirSync(directory);
 
     files.forEach(file => {
@@ -30,27 +30,27 @@ function findJsonFiles(directory) {
 
         if (fileStats.isDirectory()) {
             // If it's a directory, recursively search for JSON files
-            const subdirectoryFiles = findJsonFiles(filePath);
-            jsonFiles = jsonFiles.concat(subdirectoryFiles);
-        } else if (path.extname(file) === '.json') {
+            const subdirectoryFiles = FindFiles(filePath, type);
+            fileReturn = fileReturn.concat(subdirectoryFiles);
+        } else if (type.indexOf(path.extname(file)) != -1) {
             // If it's a JSON file, add it to the list
-            jsonFiles.push(filePath);
+            fileReturn.push(filePath);
         }
     });
 
-    return jsonFiles;
+    return fileReturn;
 }
 
-function generateAllTemplates(htmlContent, filePath, divId) {
+function GenerateAllTemplates(htmlContent, filePath, divId) {
 
-    const jsonsInDir = findJsonFiles(path.join(__dirname, '..', filePath));
+    const jsonsInDir = FindFiles(path.join(__dirname, '..', filePath), '.json');
     jsonsInDir.forEach(file => {
         const fileData = fs.readFileSync(file);
         const item = JSON.parse(fileData.toString());
-        const newContent = generateTemplate(item);
+        const newContent = GenerateTemplate(item);
 
         // Append HTML content to the specified div
-        htmlContent = appendToDiv(htmlContent, divId, newContent);
+        htmlContent = AppendToDiv(htmlContent, divId, newContent);
         //console.log(htmlContent);
         console.log(`Generated HTML for ${item.id}`);
     });
@@ -58,7 +58,7 @@ function generateAllTemplates(htmlContent, filePath, divId) {
     return htmlContent;
 }
 
-function appendToDiv(html, divId, content) {
+function AppendToDiv(html, divId, content) {
     // Find the index of the closing tag of the target div
     const closingTagIndex = html.indexOf(`<div class="block-content" id="${divId}">`);
 
@@ -79,5 +79,43 @@ function appendToDiv(html, divId, content) {
     return html.slice(0, closingDivIndex) + content + html.slice(closingDivIndex);
 }
 
+function CycleImage(oldPath, direction){
+    return new Promise((resolve, reject) => {
+        var fileTypes = ['.gif', '.png', '.jpeg'];
+        const folder = path.join(__dirname, '..', oldPath, '..');
+        const files = FindFiles(folder, fileTypes);
+        
+        files.forEach((file, index) => {
+            filePath = file.replace(/\\/g, '/');
+            if(filePath.indexOf(oldPath) != -1){
+                var newPath = '';
+                if(direction){
+                    if(index + 1 < files.length)
+                        newPath = RemoveRoot(files.at(index + 1));
+                    else
+                        newPath = RemoveRoot(files.at(0));
+                }
+                else{
+                    if(index - 1 > 0)
+                        newPath = RemoveRoot(files.at(index - 1));
+                    else
+                        newPath = RemoveRoot(files.at(files.length - 1));
+                }
+                resolve(newPath);
+            }
+        });
+        
+        function RemoveRoot(filePath){
+            // Remove the root part of the path
+            const relativePath = path.relative(__dirname, filePath);
+        
+            // Replace backslashes with forward slashes
+            const cleanedPath = relativePath.replace(/\\/g, '/');
+            const finalPath = cleanedPath.replace('../', '/');
+        
+            return finalPath.toString();
+        }
+    });
+}
 
-module.exports = { generateAllTemplates };
+module.exports = { GenerateAllTemplates, CycleImage };

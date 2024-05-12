@@ -28,3 +28,14 @@
     border-image: linear-gradient(to bottom, $color-primary, $color-secondary);
     border-image-slice: 1;
   }
+
+  .__element-spotlight{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-top: 3px solid $color-background;
+    border-bottom: 3px solid $color-background; 
+
+    & h1:before {
+      content: "Spotlight - ";
+    }
+  }

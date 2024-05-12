@@ -61,6 +61,7 @@ function GenerateDiv(name, id){
         console.log("Fetched");
         parent.innerHTML = htmlReturn; // Update the parent element with the received HTML content
         fetching = false; // Reset the flag since the fetch operation is complete
+        SetImageButtons();
         SetSelectors();
     })
     .catch(error => {
@@ -155,9 +156,70 @@ function SetSelectors() {
 
     if(subtitleElements.length == subtitles.length)
     {
+        CloneShowcase();
         const firstSubtitle = subtitleElements[0];
         setTimeout(() => {
             firstSubtitle.click();
         }, 1400);
     }
+}
+
+function SetImageButtons(){
+    ButtonLoop(document.querySelectorAll(".__element-next-button"));
+    ButtonLoop(document.querySelectorAll(".__element-prev-button"));
+
+    function ButtonLoop(buttons)
+    {
+        buttons.forEach(button => { 
+            button.addEventListener("click", RetrieveImage);
+        })
+    }
+}
+
+function CloneShowcase() {
+    var showcaseElement = document.querySelector('[id^="showcase-"]');
+    if(showcaseElement)
+    {
+        var elementToClone = document.getElementById(showcaseElement.id.replace("showcase-", ""))
+        showcaseElement.innerHTML = elementToClone.cloneNode(true).innerHTML;
+        SetImageButtons()
+    }
+}
+
+function RetrieveImage(){
+    var direction = true; // Assume next direction
+    if (this.classList.contains("__element-prev-button")) {
+        direction = false; // Change direction to previous if it's the previous button
+    }
+    
+    const image = this.parentElement.querySelector("img");
+    const imagePath = new URL(image.src).pathname; // Extracts the pathname of the URL
+    
+    fetch('/images', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+            imagePath,
+            direction,
+        }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch images');
+        }
+        return response.json();
+    })
+    .then(imgSrc => {
+        // Cycle through image URLs
+        const basePath = new URL(image.src).origin;
+        const imageUrl = basePath + imgSrc.imgSrc;
+
+        var filePath = imageUrl.replace(' ', '%20');
+        image.src = filePath;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }

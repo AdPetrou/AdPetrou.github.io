@@ -17,11 +17,22 @@ app.post('/process-html', (req, res) => {
   const filePath = req.body.filePath;
   const contentId = req.body.contentId;
   // Execute server-side tasks here
-  var htmlReturn = showcase.generateAllTemplates(htmlContent, filePath, contentId);
+  var htmlReturn = showcase.GenerateAllTemplates(htmlContent, filePath, contentId);
 
   res.setHeader('Content-Type', 'text/html'); // Set content type to HTML
   //console.log(res);
   res.send(htmlReturn); // Send the updated HTML back to the client
+});
+
+app.post('/images', async (req, res) => {
+  try {
+    var filePath = (req.body.imagePath).replace(/%20/g, ' ');
+    var newPath = await showcase.CycleImage(filePath, req.body.direction);
+
+    res.status(200).json({ imgSrc: newPath });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to read image folder' });
+  }
 });
 
 app.listen(port, () => {
