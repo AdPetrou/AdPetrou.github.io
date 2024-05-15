@@ -2,7 +2,7 @@ var subtitles = [
     { icon: "fa-house", text: "Home & About", target: "home-about", showcase: "false" },
     { icon: "fa-trowel-bricks", text: "Level Design", target: "level-design", showcase: "true" },
     { icon: "fa-gamepad", text: "Game Development", target: "game-development", showcase: "true" },
-    { icon: "fa-globe", text: "Front-End Suite", target: "front-end", showcase: "false" },
+    { icon: "fa-globe", text: "Web-Dev Suite", target: "web-dev", showcase: "false" },
     { icon: "fa-globe", text: "Other Projects", target: "other-projects", showcase: "true" }
 ]
 
@@ -63,6 +63,7 @@ function GenerateDiv(name, id){
         fetching = false; // Reset the flag since the fetch operation is complete
         SetImageButtons();
         SetSelectors();
+        CloneShowcase();
     })
     .catch(error => {
         fetching = false; // Reset the flag on error
@@ -156,7 +157,6 @@ function SetSelectors() {
 
     if(subtitleElements.length == subtitles.length)
     {
-        CloneShowcase();
         const firstSubtitle = subtitleElements[0];
         setTimeout(() => {
             firstSubtitle.click();
@@ -165,14 +165,62 @@ function SetSelectors() {
 }
 
 function SetImageButtons(){
-    ButtonLoop(document.querySelectorAll(".__element-next-button"));
-    ButtonLoop(document.querySelectorAll(".__element-prev-button"));
+    var imageContainer = document.querySelectorAll(".__element-image-container")
+
+    imageContainer.forEach(container => {
+        container = removeAllEventListeners(container);
+        container.addEventListener("click", () => {
+            var largeContainer = container.cloneNode(true);
+            largeContainer.classList.add("__element-image-container-expanded")
+            
+            SetButtons(largeContainer);
+            document.body.style.overflow = "hidden";
+
+            document.body.appendChild(largeContainer);
+            largeContainer.addEventListener("click", () => {
+                largeContainer.remove();
+                document.body.style.overflow = null;
+            });
+        });
+    });
+
+    SetShow(document);
+    SetButtons(document);
+
+    function SetShow(parent) {
+        var elements = parent.querySelectorAll(".__element-show-more");
+        elements.forEach(element => {
+            element = removeAllEventListeners(element);
+            element.addEventListener("click", handleClick);
+        });
+    
+        function handleClick(event) {
+            event.stopPropagation(); // Prevent event propagation
+            
+            var paragraph = this.parentElement.querySelector(".__element-showcase-paragraph");
+            if (!paragraph.classList.contains("__element-showcase-paragraph-unhide")) {
+                paragraph.classList.add("__element-showcase-paragraph-unhide");
+                this.textContent = "Hide text";
+                console.log("show")
+            } else {
+                paragraph.classList.remove("__element-showcase-paragraph-unhide");
+                this.textContent = "Show more";
+                console.log("hide")
+            } 
+        }
+    }
+
+    function SetButtons(parent){
+
+    ButtonLoop(parent.querySelectorAll(".__element-next-button"));
+    ButtonLoop(parent.querySelectorAll(".__element-prev-button"));
 
     function ButtonLoop(buttons)
     {
         buttons.forEach(button => { 
             button.addEventListener("click", RetrieveImage);
         })
+    }
     }
 }
 
@@ -182,6 +230,8 @@ function CloneShowcase() {
     {
         var elementToClone = document.getElementById(showcaseElement.id.replace("showcase-", ""))
         showcaseElement.innerHTML = elementToClone.cloneNode(true).innerHTML;
+        showcaseElement.classList.add(elementToClone.classList);
+        showcaseElement.classList.add("__modifier-spotlight");
         SetImageButtons()
     }
 }
@@ -222,4 +272,13 @@ function RetrieveImage(){
     .catch(error => {
         console.error('Error:', error);
     });
+}
+
+function removeAllEventListeners(element) {
+    // Create a shallow clone of the element
+    const clone = element.cloneNode(true);
+
+    // Replace the original element with the clone
+    element.parentNode.replaceChild(clone, element);
+    return clone;
 }

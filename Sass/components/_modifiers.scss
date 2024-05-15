@@ -6,3 +6,20 @@
     @include CenterAlign;
     flex-direction: column;
 }
+
+.__modifier-spotlight{
+    border-top: 3px solid $color-background;
+    & h1:before {
+      content: "Spotlight - ";
+    }
+
+    & .__element-showcase-paragraph{
+      -webkit-line-clamp: 4; /* Number of lines to show before truncating */
+    }
+  }
+
+  .__modifier-inline{
+    display: inline-flex;
+    justify-self: flex-start;
+    margin-top: 10px;
+  }

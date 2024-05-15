@@ -23,7 +23,7 @@ img {
 }
 
 a {
-    color: black;
+    color: rgb(0, 89, 255) !important;
     text-decoration: none;
     transition-property: box-shadow, transform;
     transition-duration: 0.2s;
@@ -34,13 +34,23 @@ a {
 }
 
 button {
-    transition-property: filter, box-shadow;
+    transition-property: filter, scale;
     transition-duration: 0.2s;
     transition-timing-function: ease-in-out;
-    @include BoxShadowFade;
+    background-color: $color-background;
+    border: 0;
+
+    min-width: 50px;
+    min-height: 50px;
+    
+    font-size: 25px;
+    text-align: center;
+    
+    border-radius: 5px;
+    margin: 10px;
     &:hover{
         filter: brightness(1.2);
-        @include BoxShadowFade(50%);
+        scale: 1.2;
     }
 }
 

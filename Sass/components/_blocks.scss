@@ -21,6 +21,31 @@
 
 .block-content{
     height: fit-content;
+    overflow: visible;
     margin: 50px 10%;
     @media only screen and (min-width: 768px){margin: 50px 25%;}
+}
+
+.block-showcase{
+    padding-top: 10px;
+    padding-bottom: 15px;
+    margin-bottom: 5px;
+
+    border-bottom: 3px solid $color-background; 
+}
+
+
+.block-main{
+    display: flex;
+    flex-direction: column;
+    background-color: $color-gray;
+    gap: 17px;
+    min-height: 100vh;
+    height: fit-content;
+    overflow: visible;
+    width: 100vw;
+    align-self: center;
+    z-index: 0;
+    @media only screen and (min-width: 768px){ width: 75vw;}
+    @media only screen and (min-width: 1440px){ width: 55vw;}
 }

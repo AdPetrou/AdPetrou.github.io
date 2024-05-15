@@ -13,7 +13,14 @@
     animation: spin 2s linear infinite;
   }
 
-  .__element-showcase {
+  .__element-showcase-figure{
+    & figcaption{
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  }
+
+  .__element-showcase-image {
     display: block;
     margin: auto;
     position: relative;
@@ -27,15 +34,58 @@
     border: 4px solid transparent;
     border-image: linear-gradient(to bottom, $color-primary, $color-secondary);
     border-image-slice: 1;
+
+    @include BoxShadowFadeBG(10px, 5px, darken($color-background, 2%));
   }
 
-  .__element-spotlight{
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-top: 3px solid $color-background;
-    border-bottom: 3px solid $color-background; 
+  .__element-image-container{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
 
-    & h1:before {
-      content: "Spotlight - ";
+    & *{
+      z-index: 5;
     }
+  }
+
+  .__element-image-container-expanded{
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    width: 100vw;
+    height: 100vh;
+    background-color: $color-background-dimmed;
+
+    & img{
+      width: 85vw;
+    }
+  }
+
+  .__element-showcase-paragraph{
+    display: -webkit-inline-box;
+    -webkit-line-clamp: 10; /* Number of lines to show before truncating */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .__element-show-more{
+    display: inline;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .__element-showcase-paragraph-unhide{
+    display: block;
+    -webkit-line-clamp: none; /* Number of lines to show before truncating */
+    -webkit-box-orient: vertical;
+    overflow: visible;
+    text-overflow: auto;
   }

@@ -3,16 +3,17 @@ var path = require('path');
 
 function GenerateTemplate(item) {
     return /*html*/`
-    <article id="${item.id}">
+    <article class="block-showcase" id="${item.id}">
         <h1>${item.title}</h1>
         <br>
-        <p>${item.paragraph}</p>
+        <p class="__element-showcase-paragraph">${item.paragraph}</p>
+        <a class="__element-show-more" href="#">   Show more</a> 
         <br>
-        <figure class="__modifier-center">
+        <figure class="__element-showcase-figure __modifier-center">
             <div class="__element-image-container">
-                <button class="__element-prev-button">&#10094;</button>
-                <img class="__element-showcase" src="${item.imageURL}" alt="Images">
-                <button class="__element-next-button">&#10095;</button>
+                <button class="__element-prev-button" onclick="event.stopPropagation();">&#10094;</button>
+                <img class="__element-showcase-image" src="${item.imageURL}" alt="Images">
+                <button class="__element-next-button" onclick="event.stopPropagation();">&#10095;</button>
             </div>
             <figcaption>${item.caption}</figcaption>
         </figure>
@@ -42,9 +43,8 @@ function FindFiles(directory, type) {
 }
 
 function GenerateAllTemplates(htmlContent, filePath, divId) {
-
     const jsonsInDir = FindFiles(path.join(__dirname, '..', filePath), '.json');
-    jsonsInDir.forEach(file => {
+    jsonsInDir.forEach( file => {
         const fileData = fs.readFileSync(file);
         const item = JSON.parse(fileData.toString());
         const newContent = GenerateTemplate(item);
@@ -66,9 +66,9 @@ function AppendToDiv(html, divId, content) {
         console.error(`Target div with ID ${divId} not found.`);
         return html; // Return original HTML if target div not found
     }
-
+ 
     // Find the index of the closing </div> tag after the closing tag of the target div
-    const closingDivIndex = html.indexOf('</div>', closingTagIndex);
+    const closingDivIndex = html.lastIndexOf('</div>');
 
     if (closingDivIndex === -1) {
         console.error(`Closing </div> tag not found for div with ID ${divId}.`);
@@ -81,7 +81,7 @@ function AppendToDiv(html, divId, content) {
 
 function CycleImage(oldPath, direction){
     return new Promise((resolve, reject) => {
-        var fileTypes = ['.gif', '.png', '.jpeg'];
+        var fileTypes = ['.gif', '.png', '.jpg'];
         const folder = path.join(__dirname, '..', oldPath, '..');
         const files = FindFiles(folder, fileTypes);
         
@@ -96,7 +96,7 @@ function CycleImage(oldPath, direction){
                         newPath = RemoveRoot(files.at(0));
                 }
                 else{
-                    if(index - 1 > 0)
+                    if(index - 1 >= 0)
                         newPath = RemoveRoot(files.at(index - 1));
                     else
                         newPath = RemoveRoot(files.at(files.length - 1));

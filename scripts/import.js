@@ -1,8 +1,6 @@
 // Array of script source URLs
 const scriptSources = [
-    "./scripts/header.js",
     "./scripts/function.js"
-
 ];
 
 function addScript(src, callback) {

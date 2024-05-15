@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/AdPetrou/AdPetrou.github.io#readme",
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.7",
     "@types/node": "^20.12.11"
   }
 }

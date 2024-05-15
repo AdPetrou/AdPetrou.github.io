@@ -36,3 +36,7 @@ h5{
 p{
     @include TextParagraph;
 }
+
+figcaption{
+    @include TextParagraph;
+}
